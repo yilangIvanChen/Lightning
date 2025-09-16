@@ -18,7 +18,7 @@ void draw(){
 }
 
 public boolean tap(){ //detects tap from m1, x, or c
-  if ((mousePressed == true && mouseButton == LEFT) || (keyPressed && key == 'x' || key == 'z')){
+  if ((mousePressed == true && mouseButton == LEFT) || (keyPressed && (key == 'x' || key == 'z'))){
     return true;
   }
   else
