@@ -5,15 +5,21 @@ int enX;
 int enY;
 boolean xReached = false;
 boolean yReached = false;
+int circX;
+int circY;
+
 void setup(){
+  background(200,160,200);
   size(750,500);
-  strokeWeight(3);
-  stroke(90,10,225);
+  strokeWeight(1);
 }
 
 void draw(){
   if (tap() == true){
-  lightning(375,250);
+  background(200,160,200);
+  circDraw();
+  stroke(90,10,(int)(Math.random()*155)+100);
+  lightning(circX,circY);
   }
 }
 
@@ -32,22 +38,22 @@ void lightning(int nextX, int nextY){
   stY = mouseY;
   while (xReached == false || yReached == false){ //lightning path finding
     if (stX <= nextX){
-      enX = stX+(int)(Math.random()*12)+4;
+      enX = stX+((int)(Math.random()*12)+4);
         if (enX >= nextX)
           xReached = true;
     }
     if (stX >= nextX){
-      enX = stX-(int)(Math.random()*12)+4;
+      enX = stX-((int)(Math.random()*12)+4);
         if (enX <= nextX)
           xReached = true;
     }
     if (stY <= nextY){
-      enY = stY+(int)(Math.random()*12)+4;
+      enY = stY+((int)(Math.random()*12)+4);
         if (enY >= nextY)
           yReached = true;
     }
     if (stY >= nextY){
-      enY = stY-(int)(Math.random()*12)+4;
+      enY = stY-((int)(Math.random()*12)+4);
         if (enY <= nextY)
           yReached = true;
     }
@@ -55,4 +61,12 @@ void lightning(int nextX, int nextY){
     stX = enX;
     stY = enY;
   }
+}
+
+void circDraw(){ //draws hit circle 
+  noStroke();
+  fill(80,140,255);
+  circX = (int)(Math.random()*600)+50;
+  circY = (int)(Math.random()*400)+50;
+  ellipse(circX,circY,50,50);
 }
