@@ -1,3 +1,16 @@
+/*
+To do list:
+X 50 100 300
+hit acc
+score counter
+cursor circle thing
+hit indicator (started)
+show next circle so its actually readable
+*/
+
+
+
+
 //var stuff
 int stX;
 int stY;
