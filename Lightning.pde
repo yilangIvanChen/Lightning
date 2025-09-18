@@ -8,6 +8,7 @@ boolean yReached = false;
 int circX = 375;
 int circY = 250;
 int timer = 0; //pseudo timer utilizing the 60 fps that hopefully wont break
+int combo = 0;
 int score = 0;
 
 void setup(){
@@ -20,17 +21,17 @@ void draw(){
   timer++;
   textSize(36);
   fill(150,110,150);
-  text("Combo " + score,25,55);
+  text("Combo " + combo,20,480);
   if (timer == 30){
     timer = 0;
-    score = 0;
+    combo = 0;
     background(200,160,200);
     randCirc();
     circDraw();
   }
   if (tap() == true){
     if (timer <= 30 && mouseX >= circX-40 && mouseX <= circX+40 && mouseY <= circY+40 && mouseY >= circY-40){
-      score++;
+      combo++;
       timer = 0;
       background(200,160,200);
       randCirc();
