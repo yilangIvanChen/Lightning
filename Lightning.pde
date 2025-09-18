@@ -6,6 +6,7 @@ score counter
 cursor circle thing
 hit indicator (started)
 show next circle so its actually readable
+decrease circle rand pos range bc it collides with the combo counter
 */
 
 
