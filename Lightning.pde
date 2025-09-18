@@ -5,25 +5,42 @@ int enX;
 int enY;
 boolean xReached = false;
 boolean yReached = false;
-int circX;
-int circY;
+int circX = 375;
+int circY = 250;
+int timer = 0; //pseudo timer utilizing the 60 fps that hopefully wont break
+int score = 0;
 
 void setup(){
-  background(200,160,200);
   size(750,500);
-  strokeWeight(1);
+  background(200,160,200);
+  circDraw();
 }
 
 void draw(){
+  timer++;
+  textSize(36);
+  fill(150,110,150);
+  text("Combo " + score,25,55);
+  if (timer == 30){
+    timer = 0;
+    score = 0;
+    background(200,160,200);
+    randCirc();
+    circDraw();
+  }
   if (tap() == true){
-  background(200,160,200);
-  circDraw();
-  stroke(90,10,(int)(Math.random()*155)+100);
-  lightning(circX,circY);
+    if (timer <= 30 && mouseX >= circX-40 && mouseX <= circX+40 && mouseY <= circY+40 && mouseY >= circY-40){
+      score++;
+      timer = 0;
+      background(200,160,200);
+      randCirc();
+      lightning(circX,circY);
+      circDraw();
+    }
   }
 }
 
-public boolean tap(){ //detects tap from m1, x, or c
+public boolean tap(){ //detects tap from m1, x, or z
   if ((mousePressed == true && mouseButton == LEFT) || (keyPressed && (key == 'x' || key == 'z'))){
     return true;
   }
@@ -32,6 +49,8 @@ public boolean tap(){ //detects tap from m1, x, or c
 }
 
 void lightning(int nextX, int nextY){
+  strokeWeight(2);
+  stroke(120,120,250);
   xReached = false;
   yReached = false;
   stX = mouseX;
@@ -63,10 +82,14 @@ void lightning(int nextX, int nextY){
   }
 }
 
-void circDraw(){ //draws hit circle 
-  noStroke();
+void circDraw(){ //draws hit circle
+  strokeWeight(3);
+  stroke(60,120,230);
   fill(80,140,255);
+  ellipse(circX,circY,80,80);
+}
+
+void randCirc(){
   circX = (int)(Math.random()*600)+50;
   circY = (int)(Math.random()*400)+50;
-  ellipse(circX,circY,50,50);
 }
