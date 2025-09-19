@@ -1,14 +1,3 @@
-/*
-To do list:
-X 50 100 300(working on)
-  hit acc
-show next circle so its actually readable
-*/
-
-
-
-
-//var stuff
 int stX;
 int stY;
 int enX;
@@ -21,7 +10,6 @@ int timer = 0; //pseudo timer utilizing the 60 fps that hopefully wont break
 int combo = 0;
 int score = 0;
 boolean toggle = true;
-int accStore;
 
 void setup(){
   size(750,500);
@@ -36,6 +24,9 @@ void draw(){
       toggle = false;
     else
       toggle = true;
+  }
+  if (keyPressed && (key == 'r')){
+    score = 0;
   }
   timer++;
   if (timer == 200){
@@ -52,19 +43,15 @@ void draw(){
       background(200,160,200);
       if (timer >= 75 && timer <= 125){
        score += 300;
-       accStore = 300;
       }
       else if ((timer < 75 && timer >= 45) || (timer > 125 && timer <= 165)){
       score += 100;
-      accStore = 100;
       }
       else if ((timer < 35 && timer >= 0) || (timer > 165 && timer <= 200)){
       score += 50;
-      accStore = 50;
       }
       else {
         combo = 0;
-        accStore = 0;
       }
       randCirc();
     }
@@ -138,35 +125,11 @@ void drawStuff(){
   background(200,160,200);
   lightning(circX,circY);
   circDraw();
-  accInd();
   movingStuff();
   textSize(36);
   fill(150,110,150);
   text("Combo " + combo,20,480);
   text(score, 20,40);
-}
-
-void accInd(){
-  if (accStore == 300){
-    textSize(24);
-    fill(80,230,0);
-    text("300",circX-15,circY+8);
-  }
-  if (accStore == 100){
-    textSize(24);
-    fill(60,190,255);
-    text("100",circX-15,circY+8);
-  }
-  if (accStore == 50){
-    textSize(24);
-    fill(190,120,0);
-    text("50",circX-15,circY+8); 
-  }
-  if (accStore == 0){
-    textSize(24);
-    fill(255,0,0);
-    text("X",circX-15,circY+8); 
-  }
 }
 
 void randCirc(){
