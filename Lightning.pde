@@ -37,17 +37,17 @@ void draw(){
     circDraw();
   }
   if (tap() == true){
-    if (timer <= 200 && mouseX >= circX-50 && mouseX <= circX+50 && mouseY <= circY+50 && mouseY >= circY-50){
+    if (timer <= 200 && mouseX >= circX-60 && mouseX <= circX+60 && mouseY <= circY+60 && mouseY >= circY-60){
       combo++;
       timer = 0;
       background(200,160,200);
-      if (timer >= 75 && timer <= 125){
+      if (timer >= 50 && timer <= 150){
        score += 300;
       }
-      else if ((timer < 75 && timer >= 45) || (timer > 125 && timer <= 165)){
+      else if ((timer < 50 && timer >= 30) || (timer > 150 && timer <= 175)){
       score += 100;
       }
-      else if ((timer < 35 && timer >= 0) || (timer > 165 && timer <= 200)){
+      else if ((timer < 30 && timer >= 0) || (timer > 175 && timer <= 200)){
       score += 50;
       }
       else {
@@ -115,7 +115,7 @@ void movingStuff(){
   noFill();
   strokeWeight(8);
   stroke(190,190,255);
-  ellipse(circX,circY,200-timer,200-timer);
+  ellipse(circX,circY,320-2*timer,320-2*timer);
   fill(215,160,25);
   noStroke();
   ellipse(mouseX,mouseY,34,34);
@@ -124,8 +124,8 @@ void movingStuff(){
 void drawStuff(){
   background(200,160,200);
   lightning(circX,circY);
-  circDraw();
   movingStuff();
+  circDraw();
   textSize(36);
   fill(150,110,150);
   text("Combo " + combo,20,480);
